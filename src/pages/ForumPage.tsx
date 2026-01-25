@@ -1,5 +1,5 @@
-function ForumPage() {
-  return <div>Forum Page</div>
-}
+import ForumIndex from "./forum/ForumIndex";
 
-export default ForumPage
+export default function ForumPage() {
+  return <ForumIndex />;
+}
