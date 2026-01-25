@@ -1,16 +1,29 @@
-import type { ForumSection, Post } from "./forumTypes";
+import type { ForumSection, Post, SectionKey } from "./forumTypes";
 
 export const forumSections: ForumSection[] = [
-  { key: "home", label: "首页", count: 6 },
-  { key: "announce", label: "官方公告", count: 1 },
-  { key: "help", label: "故障求助", count: 1 },
-  { key: "tech", label: "技术讨论", count: 2 },
-  { key: "life", label: "生活分享", count: 1 },
-  { key: "other", label: "其他问题", count: 1, badge: "new" },
-  { key: "mine_posts", label: "我的帖子", count: 2 },
-  { key: "mine_fav", label: "我的收藏", count: 1 },
+  { key: "home", label: "首页" },
+  { key: "announce", label: "官方公告" },
+  { key: "help", label: "故障求助" },
+  { key: "tech", label: "技术讨论" },
+  { key: "life", label: "生活分享" },
+  { key: "other", label: "其他问题", badge: "new" },
+  { key: "mine_posts", label: "我的帖子" },
+  { key: "mine_fav", label: "我的收藏" },
   { key: "mine_hidden", label: "我的隐藏", locked: true },
 ];
+
+// 模拟更“真实”的帖子数量（不一定等于当前展示的帖子数）
+export const sectionCountOffset: Partial<Record<SectionKey, number>> = {
+  home: 128,
+  announce: 12,
+  help: 45,
+  tech: 78,
+  life: 33,
+  other: 51,
+  mine_posts: 12,
+  mine_fav: 9,
+  mine_hidden: 0,
+};
 
 export const forumPosts: Post[] = [
   {

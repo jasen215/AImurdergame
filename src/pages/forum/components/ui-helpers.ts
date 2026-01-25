@@ -16,3 +16,9 @@ export function formatSectionName(key: string) {
   };
   return map[key] ?? "未知";
 }
+
+export function isAuthor(name: string) {
+  // 主角/作者列表，可按需扩展
+  const authors = new Set(["小雅_Cloud", "Xiaoya", "小雅"]);
+  return authors.has(name);
+}

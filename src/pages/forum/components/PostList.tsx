@@ -1,6 +1,6 @@
 import type { Post, SectionKey } from "../forumTypes";
 import { Pill } from "./ui";
-import { formatSectionName } from "./ui-helpers";
+import { formatSectionName, isAuthor } from "./ui-helpers";
 
 type Props = {
   posts: Post[];
@@ -72,16 +72,23 @@ export default function PostList({ posts, activeSection }: Props) {
                   </div>
                 </div>
 
-                {post.replyList && post.replyList.length > 0 ? (
-                  <div className="mt-3 space-y-2 border-t border-slate-100 pt-3">
-                    {post.replyList.map((reply, idx) => (
-                      <div key={`${post.id}-r${idx}`} className="flex gap-3 text-sm text-slate-700">
-                        <div className="min-w-[96px] text-xs font-semibold text-slate-600">{reply.author}</div>
-                        <div className="flex-1">
-                          <div className="text-[11px] text-slate-500">
-                            {reply.time}
-                            {reply.replyTo ? ` · 回复 ${reply.replyTo}` : ""}
-                          </div>
+                    {post.replyList && post.replyList.length > 0 ? (
+                      <div className="mt-3 space-y-2 border-t border-slate-100 pt-3">
+                        {post.replyList.map((reply, idx) => (
+                          <div key={`${post.id}-r${idx}`} className="flex gap-3 text-sm text-slate-700">
+                            <div className="min-w-[120px] text-xs font-semibold text-slate-500 flex items-center gap-2">
+                              <span className="text-slate-500">{reply.author}</span>
+                              {isAuthor(reply.author) ? (
+                                <span className="rounded-full bg-rose-50 px-2 py-0.5 text-[11px] leading-none text-rose-600 border border-rose-200">
+                                  作者
+                                </span>
+                              ) : null}
+                            </div>
+                            <div className="flex-1">
+                              <div className="text-[11px] text-slate-500">
+                                {reply.time}
+                                {reply.replyTo ? ` · 回复 ${reply.replyTo}` : ""}
+                              </div>
                           <div className="leading-relaxed whitespace-pre-line">{reply.content}</div>
                         </div>
                       </div>
@@ -92,6 +99,10 @@ export default function PostList({ posts, activeSection }: Props) {
             );
           })
         )}
+      </div>
+
+      <div className="mt-4 rounded-xl border border-dashed border-slate-200 bg-slate-50/70 px-4 py-3 text-center text-sm text-slate-600">
+        更多精彩
       </div>
     </div>
   );
