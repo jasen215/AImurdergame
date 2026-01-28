@@ -6,7 +6,7 @@ export type GameState = {
 };
 
 export const initialGameState: GameState = {
-  homemindUnlocked: false,
+  homemindUnlocked: true,
   adminUnlocked: false,
   forumCluesFound: 0,
   forumCluesTotal: 3,
