@@ -7,6 +7,10 @@ type Props = {
   onHomePress?: () => void;
 };
 
+function clsx(...xs: Array<string | false | undefined | null>) {
+  return xs.filter(Boolean).join(" ");
+}
+
 function useSystemTime() {
   const [now, setNow] = useState(new Date());
   useEffect(() => {
